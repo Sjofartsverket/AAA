@@ -11,6 +11,7 @@ I processen för att hämta ut en valid `JWT-token` behöver klienten även skic
 - `https://snt-public-api.tst.sjofartsverket.se/` - Grundåtkomst till API:erna, krävs för alla resurser.
 - `https://snt-public-api.tst.sjofartsverket.se/pilotage ` - Krävs för åtkomst till lotsnings-API:erna (pilotage).
 - `https://snt-public-api.tst.sjofartsverket.se/visit ` - Krävs för åtkomst till besöks-API:erna (visit).
+- `https://snt-public-api.tst.sjofartsverket.se/cancelledvisit ` - Krävs för åtkomst till API för inställda besök (visit).
 
 > Under punkt 1 nedan finns ett exempel på hur ett anrop för att hämta en token från Sjöfartsverkets `IDP` kan se ut.
 
@@ -40,4 +41,22 @@ https://jwt.io/introduction
 # Länkar
 ## Testmiljö
 * Token service: https://idp.tst.sjofartsverket.se/realms/z4_internal/protocol/openid-connect
+* API Base URL: https://snt-public-api.sjofartsverket.se/ 
 * API-dokumentation: https://snt-public-api.tst.sjofartsverket.se/swagger/
+* Scopes
+  ```
+  https://snt-public-api.tst.sjofartsverket.se/
+  https://snt-public-api.tst.sjofartsverket.se/pilotage
+  https://snt-public-api.tst.sjofartsverket.se/visit
+  https://snt-public-api.tst.sjofartsverket.se/cancelledvisit
+  ```
+## Produktionsmiljö
+* Token service: https://idp.sjofartsverket.se/realms/z4_internal/protocol/openid-connect 
+* API Base URL: https://snt-public-api.sjofartsverket.se/
+* Scopes
+   ```
+  https://snt-public-api.sjofartsverket.se/
+  https://snt-public-api.sjofartsverket.se/pilotage
+  https://snt-public-api.sjofartsverket.se/visit
+  https://snt-public-api.sjofartsverket.se/cancelledvisit
+  ```  
