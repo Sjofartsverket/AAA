@@ -11,9 +11,9 @@ The client fetches a valid `JWT-token` from SMA's `IDP`(Identity Provider) and a
 While fetching a valid `JWT-token`, the client also needs to include the parameter `scopes` (*claims*) containing a list of resources that it intends to consume. Below are the `scopes` that SMA requires for it's public API:s:
 
 - `https://snt-public-api.tst.sjofartsverket.se/` - Basic access to API:s, required  for all resources.
-- `https://snt-public-api.tst.sjofartsverket.se/pilotage ` - Required for access to "Pilotage"-resource.
-- `https://snt-public-api.tst.sjofartsverket.se/visit ` - Required for access to "Visit"-resource.
-- `https://snt-public-api.tst.sjofartsverket.se/cancelledvisit ` - Required for access to "Cancelled Visit"-resource.
+- `https://snt-public-api.tst.sjofartsverket.se/pilotages ` - Required for access to "Pilotage"-resource.
+- `https://snt-public-api.tst.sjofartsverket.se/visits ` - Required for access to "Visit"-resource.
+- `https://snt-public-api.tst.sjofartsverket.se/cancelledvisits ` - Required for access to "Cancelled Visit"-resource.
 
 > Point 1. below shows an example of how a call to fetch a token from SMA's `IDP` can look like.
 
@@ -23,7 +23,7 @@ Below is a picture showing the workflow from the harbours client perspective:
 1. The client calls SMA's `IDP` with a `HTTP POST` containing `ClientID` and `ClientSecret`. SMA responds with a *time limited*, signed `JWT-token`. Currently the token is valid for 5 minutes. Below is an example:
 
   ```
-   curl -X POST 'https://idp.tst.sjofartsverket.se/realms/z4_internal/protocol/openid-connect/token' --user $CLIENT_ID:$CLIENT_SECRET -d 'grant_type=client_credentials' -d scope='https://snt-public-api.tst.sjofartsverket.se/ https://snt-public-api.tst.sjofartsverket.se/pilotage https://snt-public-api.tst.sjofartsverket.se/visit'
+   curl -X POST 'https://idp.tst.sjofartsverket.se/realms/z4_internal/protocol/openid-connect/token' --user $CLIENT_ID:$CLIENT_SECRET -d 'grant_type=client_credentials' -d scope='https://snt-public-api.tst.sjofartsverket.se/ https://snt-public-api.tst.sjofartsverket.se/pilotages https://snt-public-api.tst.sjofartsverket.se/visits'
   ```
 
 > **Note!** `CLIENT_ID` and `CLIENT_SECRET` are pre-set environment variables.
@@ -48,9 +48,9 @@ https://jwt.io/introduction
 * Access scopes:
 ```
 `https://snt-public-api.tst.sjofartsverket.se/` 
-`https://snt-public-api.tst.sjofartsverket.se/pilotage`
-`https://snt-public-api.tst.sjofartsverket.se/visit`
-`https://snt-public-api.tst.sjofartsverket.se/cancelledvisit`
+`https://snt-public-api.tst.sjofartsverket.se/pilotages`
+`https://snt-public-api.tst.sjofartsverket.se/visits`
+`https://snt-public-api.tst.sjofartsverket.se/cancelledvisits`
 ```
 
 
@@ -60,7 +60,7 @@ https://jwt.io/introduction
 * Access scopes:
 ```
 `https://snt-public-api.sjofartsverket.se/` 
-`https://snt-public-api.sjofartsverket.se/pilotage`
-`https://snt-public-api.sjofartsverket.se/visit`
-`https://snt-public-api.sjofartsverket.se/cancelledvisit`
+`https://snt-public-api.sjofartsverket.se/pilotages`
+`https://snt-public-api.sjofartsverket.se/visits`
+`https://snt-public-api.sjofartsverket.se/cancelledvisits`
 ```
