@@ -11,9 +11,9 @@ Klienten hämtar giltig `JWT-token` från Sjöfartsverkets `IDP` (Identity Provi
 I processen för att hämta ut en valid `JWT-token` behöver klienten även skicka med en parameter `scopes` (*anspråk*) innehållandes en lista på resurser som klienten vill konsumera. Nedan listas de `scopes` som Sjöfartsverket kräver för de publika resurserna:
 
 - `https://snt-public-api.tst.sjofartsverket.se/` - Grundåtkomst till API:erna, krävs för alla resurser.
-- `https://snt-public-api.tst.sjofartsverket.se/pilotage ` - Krävs för åtkomst till lots-resurser (pilotage).
-- `https://snt-public-api.tst.sjofartsverket.se/visit ` - Krävs för åtkomst till besöks-resurser (visit).
-- `https://snt-public-api.tst.sjofartsverket.se/cancelledvisit ` - Krävs för åtkomst till resurser för inställda besök (cancelledvisit).
+- `https://snt-public-api.tst.sjofartsverket.se/pilotages ` - Krävs för åtkomst till lots-resurser (pilotage).
+- `https://snt-public-api.tst.sjofartsverket.se/visits ` - Krävs för åtkomst till besöks-resurser (visit).
+- `https://snt-public-api.tst.sjofartsverket.se/cancelledvisits ` - Krävs för åtkomst till resurser för inställda besök (cancelledvisit).
 
 > Under punkt 1 nedan finns ett exempel på hur ett anrop för att hämta en token från Sjöfartsverkets `IDP` kan se ut.
 
@@ -23,7 +23,7 @@ Nedan visas en bild på hur flödet ser ut utifrån hamnarnas klient-perspektiv:
 1. Klienten anropar Sjöfartsverkets `IDP` med en `HTTP POST` innehållandes `ClientID` och `ClientSecret` och får tillbaka en *tidbestämd* signerad `JWT-token`. Tidrymden är i dagsläget 5 minuter. Exempel på ett sådant anrop finns nedan:
 
   ```
-   curl -X POST 'https://idp.tst.sjofartsverket.se/realms/z4_internal/protocol/openid-connect/token' --user $CLIENT_ID:$CLIENT_SECRET -d 'grant_type=client_credentials' -d scope='https://snt-public-api.tst.sjofartsverket.se/ https://snt-public-api.tst.sjofartsverket.se/pilotage https://snt-public-api.tst.sjofartsverket.se/visit'
+   curl -X POST 'https://idp.tst.sjofartsverket.se/realms/z4_internal/protocol/openid-connect/token' --user $CLIENT_ID:$CLIENT_SECRET -d 'grant_type=client_credentials' -d scope='https://snt-public-api.tst.sjofartsverket.se/ https://snt-public-api.tst.sjofartsverket.se/pilotages https://snt-public-api.tst.sjofartsverket.se/visits'
   ```
 
 > **Notera!** I exemplet ovan så är `CLIENT_ID` och `CLIENT_SECRET` förangivna miljövariabler.
@@ -48,9 +48,9 @@ https://jwt.io/introduction
 * Scopes
   ```
   https://snt-public-api.tst.sjofartsverket.se/
-  https://snt-public-api.tst.sjofartsverket.se/pilotage
-  https://snt-public-api.tst.sjofartsverket.se/visit
-  https://snt-public-api.tst.sjofartsverket.se/cancelledvisit
+  https://snt-public-api.tst.sjofartsverket.se/pilotages
+  https://snt-public-api.tst.sjofartsverket.se/visits
+  https://snt-public-api.tst.sjofartsverket.se/cancelledvisits
   ```
 ## Produktionsmiljö
 * Token service: https://idp.sjofartsverket.se/realms/z4_internal/protocol/openid-connect 
@@ -58,7 +58,7 @@ https://jwt.io/introduction
 * Scopes
    ```
   https://snt-public-api.sjofartsverket.se/
-  https://snt-public-api.sjofartsverket.se/pilotage
-  https://snt-public-api.sjofartsverket.se/visit
-  https://snt-public-api.sjofartsverket.se/cancelledvisit
+  https://snt-public-api.sjofartsverket.se/pilotages
+  https://snt-public-api.sjofartsverket.se/visits
+  https://snt-public-api.sjofartsverket.se/cancelledvisits
   ```  
