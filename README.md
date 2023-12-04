@@ -1,3 +1,5 @@
+[English version](README_en.md)
+
 # Bakgrund
 AAA är ett uppdrag för att utveckla API:er för att dela ankomst- och avgångsinformation hämtat från fartygsrapporter inskickade till MSW samt information kring lotsningar från Sjöfartsverkets lotsplanering.
 
