@@ -6,12 +6,12 @@ För att kunna anropa Sjöfartsverkets API:er behöver klienterna ha en giltig `
 
 Klienten hämtar giltig `JWT-token` från Sjöfartsverkets `IDP` (Identity Provider) och autentiserar sig genom `Basic authentication scheme` med parametrarna `ClientID` som användarnamn och `ClientSecret` som lösenord. Dessa får klienten tag på genom att Sjöfartsverket lämnar ut dessa över en säker kanal (i dagsläget e-post + SMS). `ClientID` är en publik identifierare av klienten. `ClientSecret` är en hemlig och för klienten unik nyckel.
 
-I processen för att hämta ut en valid `JWT-token` behöver klienten även skicka med en parameter `scopes` (*anspråk*) innehållandes en lista på resurser som klienten vill konsumera. Nedan listas de `scopes` som Sjöfartsverket kräver för de publika API:erna:
+I processen för att hämta ut en valid `JWT-token` behöver klienten även skicka med en parameter `scopes` (*anspråk*) innehållandes en lista på resurser som klienten vill konsumera. Nedan listas de `scopes` som Sjöfartsverket kräver för de publika resurserna:
 
 - `https://snt-public-api.tst.sjofartsverket.se/` - Grundåtkomst till API:erna, krävs för alla resurser.
-- `https://snt-public-api.tst.sjofartsverket.se/pilotage ` - Krävs för åtkomst till lotsnings-API:erna (pilotage).
-- `https://snt-public-api.tst.sjofartsverket.se/visit ` - Krävs för åtkomst till besöks-API:erna (visit).
-- `https://snt-public-api.tst.sjofartsverket.se/cancelledvisit ` - Krävs för åtkomst till API för inställda besök (visit).
+- `https://snt-public-api.tst.sjofartsverket.se/pilotage ` - Krävs för åtkomst till lots-resurser (pilotage).
+- `https://snt-public-api.tst.sjofartsverket.se/visit ` - Krävs för åtkomst till besöks-resurser (visit).
+- `https://snt-public-api.tst.sjofartsverket.se/cancelledvisit ` - Krävs för åtkomst till resurser för inställda besök (cancelledvisit).
 
 > Under punkt 1 nedan finns ett exempel på hur ett anrop för att hämta en token från Sjöfartsverkets `IDP` kan se ut.
 
