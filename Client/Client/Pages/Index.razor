@@ -1,0 +1,18 @@
+﻿@page "/"
+@using Microsoft.AspNetCore.Hosting;
+@using Microsoft.Extensions.Hosting;
+@inject IWebHostEnvironment Env;
+@inject NavigationManager NavigationManager
+
+<PageTitle>Index</PageTitle>
+
+<div class="main-container">
+<h1>@Env.ApplicationName</h1>
+<br />
+</div>
+
+<style>
+    .main-container {
+        margin-left: 2rem;
+    }
+</style>
