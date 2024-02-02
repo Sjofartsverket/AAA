@@ -1,5 +1,5 @@
-﻿
-.header-text{
+﻿/*
+.header-text {
     padding-left: 5px;
 }
 
@@ -24,14 +24,9 @@ h3.header-text {
     margin-left: 2rem;
 }
 
-/*th, td {
+th, td {
     padding: 8px 0px 8px 7px;
-    margin: 0px;
-}*/
-
-/*.table-responsive {
-    width: 100%;
-}*/
+}
 
 th {
     background: rgb(238,242,247);
@@ -49,7 +44,7 @@ tr.expanded .expand-icon {
 }
 
 .expandable-row {
-    background-color: #f2f2f2; 
+    background-color: #f2f2f2;
 }
 
 .danger {
@@ -58,14 +53,4 @@ tr.expanded .expand-icon {
     text-align: center;
     width: 60%
 }
-
-
-
-
-
-
-
-
-
-
-
+*/

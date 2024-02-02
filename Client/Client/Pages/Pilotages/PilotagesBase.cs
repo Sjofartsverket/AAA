@@ -73,7 +73,7 @@ namespace Client.Pages.Pilotages
             {
                 if (pilotage.VisitId == null)
                 {
-                    errorMessage = "There's not any visit connected to this pilotage yet.";
+                    errorMessage = "There are no visits associated with this pilotage yet.";
                     return; 
                 }
 

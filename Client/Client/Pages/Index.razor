@@ -6,13 +6,55 @@
 
 <PageTitle>Index</PageTitle>
 
-<div class="main-container">
-<h1>@Env.ApplicationName</h1>
-<br />
-</div>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title text-center">AAA - Example Client</h2>
+                        <p class="card-text">
+                            AAA(?) is a project developed by the Swedish Maritime Administration to provide APIs for sharing arrival and departure information. This Blazor Server application serves as a practical example of utilizing these APIs.
+                        </p>
+                        <p class="card-text">
+                            The application uses services to interact with different API endpoints. 
+                        </p>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <strong>Service Pattern:</strong> Each service, including the Cancelled Visits, Pilotage, and Visit services, utilizes an injected <code>HttpClient</code> and relies on the <code>TokenService</code> for secure API communication. They fetch data from their respective endpoints, and the <code>TokenService</code> handles authentication by obtaining a valid JWT token.
+                            </li>
+                        </ul>
+                        <hr>
+                        <p class="card-text">
+                            <strong>Token Service:</strong> Manages the retrieval of JWT tokens from the SMA's Identity Provider (IDP). Key functionalities include:
+                        </p>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                The constructor of <code>TokenService</code> injects an <code>HttpClient</code>, <code>ProtectedLocalStorage</code>, and <code>NavigationManager</code>.
+                            </li>
+                            <li class="list-group-item">
+                                The <code>GetToken</code> method returns the JWT token using the <code>GetIDPToken</code> method.
+                            </li>
+                            <li class="list-group-item">
+                                The <code>GetIDPToken</code> method constructs and sends a request to the IDP to obtain the JWT token using the client credentials (Client ID and Client Secret) stored in <code>ProtectedLocalStorage</code>. It includes proper authentication headers and content for the request.
+                            </li>
+                            <li class="list-group-item">
+                                The <code>GetTokenClaims</code> method retrieves the claims from the obtained token, providing insight into the user's identity and permissions.
+                            </li>
+                            <li class="list-group-item">
+                                The class includes helper methods to extract the access token from the IDP request response and decode the token to obtain claims.
+                            </li>
+                        </ul>
+                        <p class="card-text">
+                            These authentication and token management processes ensure secure communication with the APIs and comply to best practices for handling sensitive information. Explore the application to see how the <code>TokenService</code> is implemented and integrated into the workflow. And for more detailed information, refer to the README file in the root of the project.
+                        </p>
+                    </div>
+                    <div class="card-footer text-muted text-center">
+                        Version 1.0.0
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
 
-<style>
-    .main-container {
-        margin-left: 2rem;
-    }
-</style>

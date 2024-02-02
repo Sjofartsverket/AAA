@@ -1,43 +1,48 @@
 ﻿@page "/token"
 @inherits TokenBase
 
-<div class="container">
-    <h3 class="header-text">Login</h3>
-    <span class="label danger">@errorMessage</span>
-    <form method="post" class="my-form" @onsubmit="HandleSubmit">
-        <div class="form-group">
-            <label for="clientId">Client ID:</label>
-            <input type="text" id="clientId" @bind="@clientId" class="form-control" />
-            @if (validationErrors.ContainsKey("ClientId"))
-            {
-                <div class="text-danger">@validationErrors["ClientId"]</div>
-            }
+<div class="container mt-5">
+    <div class="card col-md-6 mx-auto">
+        <div class="card-header text-center">
+            <h3 class="mb-0">Login</h3>
         </div>
-        <div class="form-group">
-            <label for="clientSecret">Client Secret:</label>
-            <input type="password" id="clientSecret" @bind="@clientSecret" class="form-control" />
-            @if (validationErrors.ContainsKey("ClientSecret"))
-            {
-                <div class="text-danger">@validationErrors["ClientSecret"]</div>
-            }
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <button type="submit" class="btn btn-primary submit-size" disabled="@isFetchingToken">
-                    @if (isFetchingToken)
+        <div class="card-body">
+            <span class="text-danger">@errorMessage</span>
+            <form method="post" @onsubmit="HandleSubmit">
+                <div class="form-group">
+                    <label for="clientId">Client ID:</label>
+                    <input type="text" id="clientId" @bind="@clientId" class="form-control" />
+                    @if (validationErrors.ContainsKey("ClientId"))
                     {
-                        <div class="spinner-border spinner-border-sm" role="status">
-                            <span class="sr-only"></span>
-                        </div>
+                        <small class="text-danger">@validationErrors["ClientId"]</small>
                     }
-                    else
+                </div>
+                <div class="form-group">
+                    <label for="clientSecret">Client Secret:</label>
+                    <input type="password" id="clientSecret" @bind="@clientSecret" class="form-control" />
+                    @if (validationErrors.ContainsKey("ClientSecret"))
                     {
-                        <span> Submit </span>
+                        <small class="text-danger">@validationErrors["ClientSecret"]</small>
                     }
-                </button>           
-            </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <button type="submit" class="btn btn-primary" disabled="@isFetchingToken">
+                            @if (isFetchingToken)
+                            {
+                                <div class="spinner-border spinner-border-sm" role="status">
+                                    <span class="sr-only"></span>
+                                </div>
+                            }
+                            else
+                            {
+                                <span>Submit</span>
+                            }
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
 </div>
-
 
