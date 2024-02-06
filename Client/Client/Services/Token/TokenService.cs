@@ -12,13 +12,11 @@ namespace Client.Services.Token
     {
         private readonly HttpClient _httpClient;
         private readonly ProtectedLocalStorage _storage;
-        private readonly NavigationManager _navigationManager;
 
         public TokenService(HttpClient httpClient, ProtectedLocalStorage storage, NavigationManager navigationManager)
         {
             _httpClient = httpClient;
             _storage = storage;
-            _navigationManager = navigationManager;
         }
 
         // Wrapper for GetIDPToken
@@ -59,7 +57,7 @@ namespace Client.Services.Token
             return GetAccessTokenFromIdpRequest(result.Content.ReadAsStringAsync().Result);
         }
 
-        // Method to get claims from the current token
+        // Method to get claims from the token
         public async Task<List<Claim>> GetTokenClaims()
         {
             return GetTokenClaims(await GetToken());

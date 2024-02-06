@@ -10,11 +10,10 @@ namespace Client.Pages.Token
     {
         [Inject] private ITokenService _tokenService { get; set; }
         [Inject] private ProtectedLocalStorage _storage { get; set; }
-        [Inject] private NavigationManager _navigationManager { get; set; }
 
         public string clientId { get; set; }
         public string clientSecret { get; set; }
-        
+
         public bool isFetchingToken { get; set; }
 
         public string Token { get; set; } = string.Empty;
@@ -22,6 +21,27 @@ namespace Client.Pages.Token
 
         public string errorMessage { get; set; } = string.Empty;
         public Dictionary<string, string> validationErrors { get; set; } = new Dictionary<string, string>();
+
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            ResetErrorMessage();
+
+            try
+            {
+                if (firstRender)
+                {
+                    clientId = (await _storage.GetAsync<string>(GlobalVariables.ClientId)).Value ?? "";
+                    clientSecret = (await _storage.GetAsync<string>(GlobalVariables.ClientSecret)).Value ?? "";
+
+                    StateHasChanged();
+                }
+            }
+            catch (Exception exc)
+            {
+                errorMessage = exc.Message;
+            }
+        }
 
         public async Task HandleSubmit()
         {
@@ -65,3 +85,6 @@ namespace Client.Pages.Token
         }
     }
 }
+
+
+

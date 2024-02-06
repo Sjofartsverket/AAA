@@ -17,23 +17,22 @@ namespace Client.Services.CancelledVisits
             _tokenService = tokenService;
         }
 
-
-            public async Task<CancelledVisitListDto> GetCancelledVisits(string href = null)
+        public async Task<CancelledVisitListDto> GetCancelledVisits(string href = null)
+        {
+            try
             {
-                try
-                {
-                    string sUrl = _httpClient.BaseAddress + $"api/v1/cancelledvisits?{PaginationHandler.Get(href)}";
+                string sUrl = _httpClient.BaseAddress + $"api/v1/cancelledvisits?{PaginationHandler.Get(href)}";
 
-                    var token = await _tokenService.GetToken();
+                var token = await _tokenService.GetToken();
 
-                    _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-                    return await _httpClient.GetFromJsonAsync<CancelledVisitListDto>(sUrl);
-                }
-                catch (Exception exc)
-                {
-                    throw exc;
-                }
-            } 
+                return await _httpClient.GetFromJsonAsync<CancelledVisitListDto>(sUrl);
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
+        }
     }
 }

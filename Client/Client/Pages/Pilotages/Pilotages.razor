@@ -6,7 +6,9 @@
 @if (isFetching is true)
 {
     <h3 class="header-text">Pilotages</h3>
-    <p><em>Loading...</em></p>
+    <div class="d-flex align-items-center m-lg-4">
+        <div class="spinner-border" role="status"></div>
+    </div>
 }
 
 @if (isFetching is false && pilotages == null)
@@ -87,7 +89,7 @@
                         </tr>
                         @if (pilotage.IsExpanded)
                         {
-                            <tr>
+                            <tr class="inner-row">
                                 <td colspan="12">
                                     <h4>Visit</h4>
                                     <p>
@@ -127,9 +129,6 @@
     </div>
 }
 
-        @code {
-
-    }
 
 
 

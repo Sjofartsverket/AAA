@@ -45,10 +45,6 @@ th, td {
     padding: 8px 16px;
 }
 
-th {
-    background: #eee;
-}
-
 .danger {
     color: #f44336;
     font-size: x-large;

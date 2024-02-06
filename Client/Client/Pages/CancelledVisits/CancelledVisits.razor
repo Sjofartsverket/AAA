@@ -4,11 +4,10 @@
 @inherits CancelledVisitsBase
 
 <div class="container text-center">
-    <!-- Centered outer header -->
     @if (isFetching is true)
     {
         <h3 class="header-text">Cancelled Visits</h3>
-        <p><em>Loading...</em></p>
+        <div class="spinner-border" role="status"></div>
     }
 
     @if (isFetching is false && cancelledVisits == null)
