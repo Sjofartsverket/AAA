@@ -1,0 +1,49 @@
+﻿@page "/cancelledvisits"
+@using Client.Models;
+@using Client.Services.CancelledVisits;
+@inherits CancelledVisitsBase
+
+<div class="container text-center">
+    @if (isFetching is true)
+    {
+        <h3 class="header-text">Cancelled Visits</h3>
+        <div class="spinner-border" role="status"></div>
+    }
+
+    @if (isFetching is false && cancelledVisits == null)
+    {
+        <h3 class="header-text">Cancelled Visits</h3>
+        <span class="label danger">@errorMessage</span>
+    }
+
+    @if (isFetching is false && cancelledVisits != null)
+    {
+        <div>
+            <h3 class="header-text">Cancelled Visits</h3>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card text-center">
+                    <div class="card-header text-center">
+                        <h5 class="mb-0">Visit ID</h5>
+                    </div>
+                    <div class="card-body">
+                        @foreach (var visitId in cancelledVisits.CancelledVisits)
+                        {
+                            <p class="mb-0">@visitId</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+
+
+
+
+
+

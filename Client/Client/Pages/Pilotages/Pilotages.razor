@@ -1,0 +1,137 @@
+﻿@page "/pilotages"
+@using Client.Models;
+@using Client.Services.Pilotages;
+@inherits PilotagesBase
+
+@if (isFetching is true)
+{
+    <h3 class="header-text">Pilotages</h3>
+    <div class="d-flex align-items-center m-lg-4">
+        <div class="spinner-border" role="status"></div>
+    </div>
+}
+
+@if (isFetching is false && pilotages == null)
+{
+    <h3 class="header-text">Pilotages</h3>
+    <span class="label danger">@errorMessage</span>
+}
+
+@if (isFetching is false && pilotages != null)
+{
+    <div class="d-flex justify-content-end align-items-center mb-3">
+        <h3 style="margin-right:auto" class="header-text">Pilotages</h3>
+        <span class="label danger">@errorMessage</span>
+        <button style="margin: 10px" class="btn btn-sm @(!pilotages.Links.ContainsKey("previous") ? "btn-secondary" : "btn-primary")" @onclick="PreviousPage" disabled=@(!pilotages.Links.ContainsKey("previous"))>
+            Previous
+        </button>
+        <p class="m-0 ml-2" style="margin: 20px">@($"Page {pilotages.PageNumber} of {pilotages.PageCount}")</p>
+        <button style="margin: 10px" class="btn btn-sm @(!pilotages.Links.ContainsKey("next") ? "btn-secondary" : "btn-primary")" @onclick="NextPage" disabled=@(!pilotages.Links.ContainsKey("next"))>
+            Next
+        </button>
+    </div>
+    <div class="tableFixHead">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>IMO</th>
+                        <th>From pointname</th>
+                        <th>To pointname</th>
+                        <th>Planned starttime</th>
+                        <th>Actual starttime</th>
+                        <th>Planned endtime</th>
+                        <th>Actual endtime</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var pilotage in pilotages.pilotages)
+                    {
+                        <tr style="cursor:pointer" class="@((pilotage.IsExpanded ? "expanded" : ""))" @onclick="@(async () => await OnExpandedClicked(pilotage))">
+                            <td>
+                                <span class="expand-icon">&#9656;</span>
+                                @pilotage.Imo
+                            </td>
+                            <td>@pilotage.FromPointName</td>
+                            <td>@pilotage.ToPointName</td>
+                            @if (@pilotage.PlannedStartTime.HasValue)
+                            {
+                                <td>@pilotage.PlannedStartTime.Value.ToString("yyyy-MM-dd HH:mm")</td>
+                            }
+                            else
+                            {
+                                <td>-</td>
+                            }
+                            @if (@pilotage.ActualStartTime.HasValue)
+                            {
+                                <td>@pilotage.ActualStartTime.Value.ToString("yyyy-MM-dd HH:mm")</td>
+                            }
+                            else
+                            {
+                                <td>-</td>
+                            }
+                            @if (@pilotage.PlannedEndTime.HasValue)
+                            {
+                                <td>@pilotage.PlannedEndTime.Value.ToString("yyyy-MM-dd HH:mm")</td>
+                            }
+                            else
+                            {
+                                <td>-</td>
+                            }
+                            @if (@pilotage.ActualEndTime.HasValue)
+                            {
+                                <td>@pilotage.ActualEndTime.Value.ToString("yyyy-MM-dd HH:mm")</td>
+                            }
+                            else
+                            {
+                                <td>-</td>
+                            }
+                        </tr>
+                        @if (pilotage.IsExpanded)
+                        {
+                            <tr class="inner-row">
+                                <td colspan="12">
+                                    <h4>Visit</h4>
+                                    <p>
+                                        Ship (IMO): @pilotage.visitDto.Ship.Name (@pilotage.visitDto.Ship.Imo)
+                                    </p>
+                                    <p>
+                                        Departure Port Name: @pilotage.visitDto.Departure.Port.PortName
+                                    </p>
+                                    <p>
+                                        Arrival Port Name: @pilotage.visitDto.Arrival.Port.PortName
+                                    </p>
+                                    @if (pilotage.visitDto.Arrival.EstimatedTime.HasValue)
+                                    {
+                                        <p>
+                                            Estimated Arrival Time: @pilotage.visitDto.Arrival.EstimatedTime.Value.ToString("yyyy-MM-dd HH:mm")
+                                        </p>
+                                    }
+                                    @if (pilotage.visitDto.Departure.EstimatedTime.HasValue)
+                                    {
+                                        <p>
+                                            Estimated Departure Time: @pilotage.visitDto.Departure.EstimatedTime.Value.ToString("yyyy-MM-dd HH:mm")
+                                        </p>
+                                    }
+                                    <p>
+                                        Last port of call: @pilotage.visitDto.LastPortOfCall.PortName
+                                    </p>
+                                    <p>
+                                        Next port of call: @pilotage.visitDto.NextPortOfCall.PortName
+                                    </p>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+
+
+
+
+
+
+

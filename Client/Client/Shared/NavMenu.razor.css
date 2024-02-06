@@ -1,0 +1,22 @@
+.navbar-dark {
+    background-color: #00508C !important;
+}
+
+.logo-size {
+    height: 3rem;
+}
+
+.navbar-text-white {
+    color: white !important;
+}
+
+    .navbar-text-white:hover {
+        color: #a0a0a0 !important; 
+    }
+
+@media (max-width: 767px) {
+    .navbar-collapse {
+        z-index: 1000;
+        position: relative;
+    }
+}
