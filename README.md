@@ -43,7 +43,7 @@ https://jwt.io/introduction
 # Länkar
 ## Testmiljö
 * Token service: https://idp.tst.sjofartsverket.se/realms/z4_internal/protocol/openid-connect
-* API Base URL: https://snt-public-api.sjofartsverket.se/ 
+* API Base URL: https://snt-public-api.tst.sjofartsverket.se/ 
 * API-dokumentation: https://snt-public-api.tst.sjofartsverket.se/swagger/
 * Scopes
   ```
